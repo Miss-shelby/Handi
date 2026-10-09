@@ -1,7 +1,11 @@
 [package]
 name = "registry"
-version = "0.1.0"
-edition = "2021"
+version = "1.0.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Handi Protocol - Decentralized Skilled Artisan Identity & Reputation Registry Smart Contract on Stellar Soroban"
 publish = false
 
 [lib]

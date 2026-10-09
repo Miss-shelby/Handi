@@ -1,3 +1,9 @@
+//! # Handi Market Smart Contract
+//!
+//! Handi Protocol is a decentralized, trustless service marketplace built on Stellar (Soroban).
+//! This module handles job creation, escrow locking, artisan assignments, completion verification,
+//! dispute resolution via decentralized jurors, and automated fund releases.
+
 #![no_std]
 use soroban_sdk::{
     contract, contractevent, contractimpl, contracttype, token, Address, BytesN, Env, String, Vec,

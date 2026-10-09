@@ -1,4 +1,4 @@
-# Security Audit Report: Authorization Checks
+# Handi Protocol Security Audit Report: Authorization & Access Control Verification
 
 ## Audit Scope
 Review all state-mutating functions across both contracts to ensure:

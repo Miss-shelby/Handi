@@ -1,3 +1,8 @@
+//! # Handi Registry Smart Contract
+//!
+//! Handi Protocol is a decentralized identity and reputation system for local artisans and service providers built on Stellar (Soroban).
+//! This module handles user registrations, identity profile verification workflows, curator management, and administrative governance.
+
 #![no_std]
 use soroban_sdk::{
     contract, contractevent, contractimpl, contracttype, Address, BytesN, Env, String,

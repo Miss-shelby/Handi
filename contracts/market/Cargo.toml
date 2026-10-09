@@ -1,7 +1,11 @@
 [package]
 name = "market"
-version = "0.0.0"
-edition = "2021"
+version = "1.0.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Handi Protocol - Decentralized On-Demand Service Marketplace Smart Contract on Stellar Soroban"
 publish = false
 
 [lib]

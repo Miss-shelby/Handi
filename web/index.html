@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handi Protocol | Decentralized Skilled Service Infrastructure on Stellar</title>
+  <meta name="description" content="Handi Protocol is a trustless, decentralized service marketplace and artisan registry built on Stellar Soroban smart contracts.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="#" class="brand">
+      <div class="brand-icon">🛠️</div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="brand-title">Handi</span>
+          <span class="brand-badge">PROTOCOL</span>
+        </div>
+      </div>
+    </a>
+
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="marketplace">
+        <span>🛒</span> Marketplace
+      </button>
+      <button class="tab-btn" data-tab="registry">
+        <span>👨‍🔧</span> Artisan Registry
+      </button>
+      <button class="tab-btn" data-tab="simulator">
+        <span>⚡</span> Contract Simulator
+      </button>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="network-pill">
+        <span class="network-dot"></span>
+        <span>Stellar Soroban</span>
+      </div>
+      <button class="btn-connect" onclick="alert('Connected to Stellar Freighter / Soroban Wallet')">Connect Wallet</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Stats Banner -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon indigo">📋</div>
+        <div>
+          <div class="stat-label">Total Jobs Posted</div>
+          <div class="stat-value" id="statTotalJobs">4</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon emerald">🔒</div>
+        <div>
+          <div class="stat-label">Total Escrow Locked</div>
+          <div class="stat-value" id="statTotalEscrow">1,820 XLM</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon amber">⚙️</div>
+        <div>
+          <div class="stat-label">Active Jobs</div>
+          <div class="stat-value" id="statActiveJobs">2</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon purple">🛡️</div>
+        <div>
+          <div class="stat-label">Verified Artisans</div>
+          <div class="stat-value" id="statVerifiedArtisans">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: MARKETPLACE -->
+    <section id="marketplace" class="tab-content active">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>💼</span> Active Service Escrows & Listings
+        </h2>
+        <button class="btn-primary" onclick="openModal()">
+          <span>+</span> Post New Job
+        </button>
+      </div>
+
+      <div class="job-grid" id="jobGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 2: ARTISAN REGISTRY -->
+    <section id="registry" class="tab-content">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>👨‍🔧</span> Verified Skilled Artisans Directory
+        </h2>
+        <button class="btn-outline" onclick="alert('Register Profile feature: Submit identity hash to Registry Contract.')">
+          + Register as Artisan
+        </button>
+      </div>
+
+      <div class="artisan-grid" id="artisanGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 3: CONTRACT SIMULATOR -->
+    <section id="simulator" class="tab-content">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>⚡</span> Soroban Smart Contract Execution Console
+        </h2>
+        <button class="btn-outline" onclick="document.getElementById('consoleBox').innerText = ''; appendLog('Console cleared.', 'info');">
+          Clear Logs
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+          <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--text-main);">Contract Operations</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn-primary" onclick="appendLog('[Sim] Invoking handi_market::create_job(amount=100 XLM)', 'info')">
+              `create_job` Invocation
+            </button>
+            <button class="btn-outline" onclick="appendLog('[Sim] Invoking handi_market::confirm_delivery(job_id=101)', 'success')">
+              `confirm_delivery` Invocation
+            </button>
+            <button class="btn-outline" onclick="appendLog('[Sim] Invoking handi_registry::approve_artisan(caller=Curator)', 'info')">
+              `approve_artisan` Invocation
+            </button>
+            <button class="btn-outline" onclick="appendLog('[Sim] Invoking handi_market::auto_release_funds(job_id=101)', 'warning')">
+              `auto_release_funds` Invocation
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="console-box" id="consoleBox">
+            <!-- Console logs stream here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Create Job Modal -->
+  <div class="modal-backdrop" id="createJobModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Post Job & Lock Escrow</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Service Title</label>
+        <input type="text" id="newJobTitle" class="form-input" placeholder="e.g. Electrical Panel Upgrade & Breakers">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Escrow Budget (XLM)</label>
+        <input type="number" id="newJobAmount" class="form-input" placeholder="e.g. 500">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select id="newJobCategory" class="form-select">
+          <option>Electrical & Renewable</option>
+          <option>Plumbing & Water Systems</option>
+          <option>Carpentry & Building</option>
+          <option>HVAC & Refrigeration</option>
+          <option>Digital & Design</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Detailed Description & Delivery Requirements</label>
+        <textarea id="newJobDesc" class="form-textarea" placeholder="Specify project scope, materials required, and expected completion timeframe..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <button class="btn-outline" style="flex: 1;" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" style="flex: 1;" onclick="createJobFromModal()">Deposit & Post Job</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>
