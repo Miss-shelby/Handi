@@ -23,14 +23,14 @@ Handi Protocol is designed as a modular, upgradeable architecture consisting of 
 
 ```mermaid
 graph TD
-    Client[👤 Client / Service Finder] -->|1. Post Job + Lock Funds| Market[⚙️ Handi Market Contract]
-    Artisan[👨‍🔧 Skilled Artisan] -->|2. Apply / Start Job| Market
-    Curator[🛡️ Community Curator] -->|Verify Identity & Reputation| Registry[📋 Handi Registry Contract]
-    Registry -->|Profile & Verification Status| Market
-    Artisan -->|3. Submit Delivery| Market
-    Client -->|4a. Confirm & Release Escrow| Artisan
-    Market -->|4b. Auto-Release (if timeout)| Artisan
-    Juror[⚖️ Dispute Juror] -->|5. Resolve Dispute (if raised)| Market
+    Client["👤 Client / Service Finder"] -->|"1. Post Job + Lock Funds"| Market["⚙️ Handi Market Contract"]
+    Artisan["👨‍🔧 Skilled Artisan"] -->|"2. Apply / Start Job"| Market
+    Curator["🛡️ Community Curator"] -->|"Verify Identity & Reputation"| Registry["📋 Handi Registry Contract"]
+    Registry -->|"Profile & Verification Status"| Market
+    Artisan -->|"3. Submit Delivery"| Market
+    Client -->|"4a. Confirm & Release Escrow"| Artisan
+    Market -->|"4b. Auto-Release (if timeout)"| Artisan
+    Juror["⚖️ Dispute Juror"] -->|"5. Resolve Dispute (if raised)"| Market
 ```
 
 ### 1. ⚙️ `contracts/market` (Handi Market)
